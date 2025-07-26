@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Booking System</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-plane"></i> SkyBooker
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#booking">Book Flight</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#results">My Bookings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h1 class="hero-title">Find Your Perfect Flight</h1>
+            <p class="hero-subtitle">
+              Book flights to anywhere in the world with the best prices
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="booking-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="booking-card">
+              <div class="card-header">
+                <h3><i class="fas fa-search"></i> Search Flights</h3>
+              </div>
+              <div class="card-body">
+                <form id="flightSearchForm">
+                  <div class="row">
+                    <!-- Trip Type -->
+                    <div class="col-12 mb-3">
+                      <div class="trip-type">
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="tripType"
+                            id="roundTrip"
+                            value="round"
+                            checked
+                          />
+                          <label class="form-check-label" for="roundTrip"
+                            >Round Trip</label
+                          >
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="tripType"
+                            id="oneWay"
+                            value="oneway"
+                          />
+                          <label class="form-check-label" for="oneWay"
+                            >One Way</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- From -->
+                    <div class="col-md-6 mb-3">
+                      <label for="fromCity" class="form-label">
+                        <i class="fas fa-plane-departure"></i> From
+                      </label>
+                      <select class="form-select" id="fromCity" required>
+                        <option value="">Select departure city</option>
+                        <option value="NYC">New York (NYC)</option>
+                        <option value="LAX">Los Angeles (LAX)</option>
+                        <option value="CHI">Chicago (CHI)</option>
+                        <option value="MIA">Miami (MIA)</option>
+                        <option value="LAS">Las Vegas (LAS)</option>
+                        <option value="LON">London (LON)</option>
+                        <option value="PAR">Paris (PAR)</option>
+                        <option value="TOK">Tokyo (TOK)</option>
+                        <option value="SYD">Sydney (SYD)</option>
+                        <option value="DUB">Dubai (DUB)</option>
+                      </select>
+                    </div>
+
+                    <!-- To -->
+                    <div class="col-md-6 mb-3">
+                      <label for="toCity" class="form-label">
+                        <i class="fas fa-plane-arrival"></i> To
+                      </label>
+                      <select class="form-select" id="toCity" required>
+                        <option value="">Select destination city</option>
+                        <option value="NYC">New York (NYC)</option>
+                        <option value="LAX">Los Angeles (LAX)</option>
+                        <option value="CHI">Chicago (CHI)</option>
+                        <option value="MIA">Miami (MIA)</option>
+                        <option value="LAS">Las Vegas (LAS)</option>
+                        <option value="LON">London (LON)</option>
+                        <option value="PAR">Paris (PAR)</option>
+                        <option value="TOK">Tokyo (TOK)</option>
+                        <option value="SYD">Sydney (SYD)</option>
+                        <option value="DUB">Dubai (DUB)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- Departure Date -->
+                    <div class="col-md-6 mb-3">
+                      <label for="departureDate" class="form-label">
+                        <i class="fas fa-calendar-alt"></i> Departure Date
+                      </label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="departureDate"
+                        required
+                      />
+                    </div>
+
+                    <!-- Return Date -->
+                    <div class="col-md-6 mb-3" id="returnDateContainer">
+                      <label for="returnDate" class="form-label">
+                        <i class="fas fa-calendar-alt"></i> Return Date
+                      </label>
+                      <input type="date" class="form-control" id="returnDate" />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- Passengers -->
+                    <div class="col-md-6 mb-3">
+                      <label for="passengers" class="form-label">
+                        <i class="fas fa-users"></i> Passengers
+                      </label>
+                      <select class="form-select" id="passengers" required>
+                        <option value="1">1 Passenger</option>
+                        <option value="2">2 Passengers</option>
+                        <option value="3">3 Passengers</option>
+                        <option value="4">4 Passengers</option>
+                        <option value="5">5+ Passengers</option>
+                      </select>
+                    </div>
+
+                    <!-- Class -->
+                    <div class="col-md-6 mb-3">
+                      <label for="flightClass" class="form-label">
+                        <i class="fas fa-star"></i> Class
+                      </label>
+                      <select class="form-select" id="flightClass" required>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First Class</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-lg search-btn"
+                    >
+                      <i class="fas fa-search"></i> Search Flights
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner d-none">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Searching for flights...</p>
+    </div>
+
+    <!-- Flight Results Section -->
+    <section id="results" class="results-section d-none">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="mb-4"><i class="fas fa-list"></i> Available Flights</h3>
+            <div id="flightResults" class="flight-results">
+              <!-- Flight results will be populated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div
+      class="modal fade"
+      id="bookingModal"
+      tabindex="-1"
+      aria-labelledby="bookingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookingModalLabel">
+              <i class="fas fa-ticket-alt"></i> Complete Your Booking
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="passengerForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input type="tel" class="form-control" id="phone" required />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="passport" class="form-label">Passport Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="passport"
+                  required
+                />
+              </div>
+
+              <div class="flight-summary mb-3">
+                <h6>Flight Summary</h6>
+                <div id="bookingSummary">
+                  <!-- Booking summary will be populated here -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary" id="confirmBooking">
+              <i class="fas fa-credit-card"></i> Confirm Booking
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="successModalLabel">
+              <i class="fas fa-check-circle"></i> Booking Confirmed!
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <i
+                class="fas fa-check-circle text-success"
+                style="font-size: 4rem"
+              ></i>
+              <h4 class="mt-3">Thank you for your booking!</h4>
+              <p>
+                Your booking reference is:
+                <strong id="bookingReference"></strong>
+              </p>
+              <p>A confirmation email has been sent to your email address.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
